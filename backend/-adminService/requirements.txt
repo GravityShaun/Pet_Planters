@@ -1,0 +1,6 @@
+# backend/-adminService/requirements.txt
+fastapi
+uvicorn
+httpx
+pydantic
+psutil

@@ -1,0 +1,447 @@
+=================================================
+🚀 Building and Running Zero-Copy Server for WebRTC Service
+=================================================
+
+[1/4] Checking for prerequisites...
+✅ Prerequisites found.
+
+[2/4] Activating Python environment and installing dependencies...
+WARNING: python-socketio 5.11.4 does not provide the extra 'asyncio-redis'
+
+[notice] A new release of pip is available: 25.1.1 -> 25.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 25.1.1 -> 25.2
+[notice] To update, run: pip install --upgrade pip
+✅ Environment activated and dependencies installed.
+
+[3/4] Building the 'zcasgi' Rust module with maturin...
+(This will compile the Rust code and make it available to Python.)
+→ Running 'cargo clean'...
+     Removed 1133 files, 240.0MiB total
+→ Running 'maturin develop'...
+🔗 Found pyo3 bindings
+🐍 Found CPython 3.9 at /Users/shauncohen/Documents/BatCave/CTRL_CHAT_2/backend/-WebRtcFramework/-webrtcSocketService/venv/bin/python
+   Compiling libc v0.2.174
+   Compiling once_cell v1.21.3
+   Compiling proc-macro2 v1.0.95
+   Compiling autocfg v1.5.0
+   Compiling target-lexicon v0.12.16
+   Compiling unicode-ident v1.0.18
+   Compiling parking_lot_core v0.9.11
+   Compiling bytes v1.10.1
+   Compiling pin-project-lite v0.2.16
+   Compiling scopeguard v1.2.0
+   Compiling smallvec v1.15.1
+   Compiling cfg-if v1.0.1
+   Compiling futures-core v0.3.31
+   Compiling fnv v1.0.7
+   Compiling itoa v1.0.15
+   Compiling hashbrown v0.15.4
+   Compiling futures-sink v0.3.31
+   Compiling equivalent v1.0.2
+   Compiling core-foundation-sys v0.8.7
+   Compiling httparse v1.10.1
+   Compiling tracing-core v0.1.34
+   Compiling system-configuration-sys v0.6.0
+   Compiling atomic-waker v1.1.2
+   Compiling pin-utils v0.1.0
+   Compiling portable-atomic v1.11.1
+   Compiling futures-task v0.3.31
+   Compiling try-lock v0.2.5
+   Compiling lock_api v0.4.13
+   Compiling memoffset v0.9.1
+   Compiling heck v0.4.1
+   Compiling slab v0.4.10
+   Compiling futures-util v0.3.31
+   Compiling tracing v0.1.41
+   Compiling want v0.3.1
+   Compiling futures-channel v0.3.31
+   Compiling bitflags v2.9.1
+   Compiling pyo3-build-config v0.21.2
+   Compiling quote v1.0.40
+   Compiling http v1.3.1
+   Compiling signal-hook-registry v1.4.5
+   Compiling socket2 v0.5.10
+   Compiling mio v1.0.4
+   Compiling indexmap v2.10.0
+   Compiling syn v2.0.104
+   Compiling parking_lot v0.12.4
+   Compiling core-foundation v0.9.4
+   Compiling httpdate v1.0.3
+   Compiling system-configuration v0.6.1
+   Compiling indoc v2.0.6
+   Compiling ipnet v2.11.0
+   Compiling base64 v0.22.1
+   Compiling percent-encoding v2.3.1
+   Compiling unindent v0.2.4
+   Compiling tower-service v0.3.3
+   Compiling http-body v1.0.1
+   Compiling http-body-util v0.1.3
+   Compiling pyo3-ffi v0.21.2
+   Compiling pyo3 v0.21.2
+   Compiling pyo3-macros-backend v0.21.2
+   Compiling tokio-macros v2.5.0
+   Compiling tokio v1.46.1
+   Compiling pyo3-macros v0.21.2
+   Compiling tokio-util v0.7.15
+   Compiling h2 v0.4.11
+   Compiling hyper v1.6.0
+   Compiling hyper-util v0.1.15
+   Compiling zcasgi v0.1.0 (/Users/shauncohen/Documents/BatCave/CTRL_CHAT_2/backend/-WebRtcFramework/-webrtcSocketService/zcasgi)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 19.41s
+📦 Built wheel for CPython 3.9 to /var/folders/g0/xdw11tss35z9g1lxtlxkhw940000gn/T/.tmpiPnq9j/zcasgi-0.1.0-cp39-cp39-macosx_11_0_arm64.whl
+✏️ Setting installed package as editable
+🛠 Installed zcasgi-0.1.0
+✅ Rust module built and installed successfully.
+
+[4/4] Starting the server...
+(Running the 'start_zcasgi.py' script which imports the Rust module.)
+/Users/shauncohen/Documents/BatCave/CTRL_CHAT_2/backend/-WebRtcFramework/-webrtcSocketService/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+INFO:socketio_server:Successfully connected to Redis at redis://localhost:6379/0
+🚀 Zero-copy engine initialized successfully
+INFO:socketio_server:🚀 Zero-copy networking engine initialized
+INFO:socketio_server:✅ Redis client manager initialized for Socket.IO
+INFO:socketio_server:✅ Using orjson for high-performance JSON processing
+INFO:main:Successfully connected to Redis at redis://localhost:6379/0
+INFO:zcasgi_enhanced:================================================================================
+INFO:zcasgi_enhanced:🚀 Zero-Copy Enhanced WebRTC Server
+INFO:zcasgi_enhanced:================================================================================
+INFO:zcasgi_enhanced:Integration Strategy:
+INFO:zcasgi_enhanced:• Keeps existing Python Socket.IO and FastAPI logic
+INFO:zcasgi_enhanced:• Adds zero-copy optimizations to performance-critical paths
+INFO:zcasgi_enhanced:• Maintains full compatibility with current architecture
+INFO:zcasgi_enhanced:• No disruption to existing application behavior
+INFO:zcasgi_enhanced:================================================================================
+INFO:zcasgi_enhanced:Zero-Copy Engine Available: True
+INFO:zcasgi_enhanced:Zero-Copy Mode Enabled: True
+INFO:zcasgi_enhanced:Engine Version: 0.1.0
+INFO:zcasgi_enhanced:Engine Description: Zero-copy ASGI server with WebRTC optimizations
+INFO:zcasgi_enhanced:================================================================================
+INFO:zcasgi_enhanced:🚀 Starting Zero-Copy Enhanced WebRTC Server...
+INFO:zcasgi_enhanced:   Host: 0.0.0.0
+INFO:zcasgi_enhanced:   Port: 8002
+INFO:zcasgi_enhanced:   Zero-Copy Enabled: True
+INFO:zcasgi_enhanced:   Engine Version: 0.1.0
+INFO:zcasgi_enhanced:🔍 Running zero-copy performance benchmarks...
+INFO:zcasgi_enhanced:   📊   1024 bytes: 99310.77 MB/s, 101694226 ops/s
+INFO:zcasgi_enhanced:   📊   4096 bytes: 533276.45 MB/s, 136518771 ops/s
+INFO:zcasgi_enhanced:   📊  16384 bytes: 2195509.22 MB/s, 140512590 ops/s
+INFO:zcasgi_enhanced:   📊  65536 bytes: 8620689.66 MB/s, 137931034 ops/s
+INFO:zcasgi_enhanced:   📊 262144 bytes: 34722222.22 MB/s, 138888889 ops/s
+INFO:zcasgi_enhanced:   ✅ WebRTC signaling memoryview: OK (13100 bytes)
+INFO:zcasgi_enhanced:✅ Using existing FastAPI application as the main entry point.
+INFO:zcasgi_enhanced:✅ Zero-Copy Enhanced WebRTC Server is running!
+INFO:zcasgi_enhanced:   Socket.IO endpoint: ws://0.0.0.0:8002/socket.io/
+INFO:zcasgi_enhanced:   FastAPI endpoints: http://0.0.0.0:8002/
+INFO:zcasgi_enhanced:   Health check: http://0.0.0.0:8002/health
+INFO:zcasgi_enhanced:   Metrics: http://0.0.0.0:8002/metrics
+INFO:     Started server process [57795]
+INFO:     Waiting for application startup.
+INFO:socketio_server:Signaling queue processing started.
+INFO:socketio_server:Enhanced WebRTC signaling queue processor started with zero-copy support.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+aioredis backend initialized.
+INFO:socketio.server:aioredis backend initialized.
+INFO:     ('127.0.0.1', 55945) - "WebSocket /?EIO=4&transport=websocket" [accepted]
+INFO:     connection open
+INFO:socketio_server:Connection attempt from sJDHBFRI4XiSMAZQAAAB with auth: {'user_id': 'web-client-nh2o2'}
+INFO:socketio_server:WebRTC Socket client connected: sJDHBFRI4XiSMAZQAAAB as user web-client-nh2o2
+INFO:socketio_server:Attempting to set user session in Redis for web-client-nh2o2
+INFO:socketio_server:Successfully set user session in Redis for web-client-nh2o2
+INFO:socketio_server:Connect handler for sJDHBFRI4XiSMAZQAAAB completed successfully. Sending ack.
+✅ Zero-copy networking engine loaded
+✅ Successfully imported socketio server
+✅ Successfully imported zcasgi zero-copy engine
+✅ Successfully imported existing FastAPI application
+INFO:     127.0.0.1:55947 - "GET /api/webrtc/ice-config HTTP/1.1" 200 OK
+INFO:     ('127.0.0.1', 55964) - "WebSocket /?EIO=4&transport=websocket" [accepted]
+INFO:     connection open
+INFO:socketio_server:Connection attempt from zJwsu74zJAQSls6EAAAD with auth: {'user_id': 'web-client-f96s3'}
+INFO:socketio_server:WebRTC Socket client connected: zJwsu74zJAQSls6EAAAD as user web-client-f96s3
+INFO:socketio_server:Attempting to set user session in Redis for web-client-f96s3
+INFO:socketio_server:Successfully set user session in Redis for web-client-f96s3
+INFO:socketio_server:Connect handler for zJwsu74zJAQSls6EAAAD completed successfully. Sending ack.
+INFO:     127.0.0.1:55947 - "GET /api/webrtc/ice-config HTTP/1.1" 200 OK
+INFO:     ('127.0.0.1', 56010) - "WebSocket /?EIO=4&transport=websocket" [accepted]
+INFO:     connection open
+INFO:socketio_server:Connection attempt from 2uXO2qE8fG8v2XhxAAAF with auth: {'user_id': 'web-client-w7dr0'}
+INFO:socketio_server:WebRTC Socket client connected: 2uXO2qE8fG8v2XhxAAAF as user web-client-w7dr0
+INFO:socketio_server:Attempting to set user session in Redis for web-client-w7dr0
+INFO:socketio_server:Successfully set user session in Redis for web-client-w7dr0
+INFO:socketio_server:Connect handler for 2uXO2qE8fG8v2XhxAAAF completed successfully. Sending ack.
+INFO:     127.0.0.1:56011 - "GET /api/webrtc/ice-config HTTP/1.1" 200 OK
+INFO:     ('127.0.0.1', 56035) - "WebSocket /?EIO=4&transport=websocket" [accepted]
+INFO:     connection open
+INFO:socketio_server:Connection attempt from NZGOXLi0ZnXkhriMAAAH with auth: {'user_id': 'web-client-wlrbz'}
+INFO:socketio_server:WebRTC Socket client connected: NZGOXLi0ZnXkhriMAAAH as user web-client-wlrbz
+INFO:socketio_server:Attempting to set user session in Redis for web-client-wlrbz
+INFO:socketio_server:Successfully set user session in Redis for web-client-wlrbz
+INFO:socketio_server:Connect handler for NZGOXLi0ZnXkhriMAAAH completed successfully. Sending ack.
+INFO:     127.0.0.1:56011 - "GET /api/webrtc/ice-config HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     connection closed
+INFO:socketio_server:WebRTC Socket client disconnected: sJDHBFRI4XiSMAZQAAAB (user: web-client-nh2o2)
+INFO:socketio_server:WebRTC Socket client disconnected: zJwsu74zJAQSls6EAAAD (user: web-client-f96s3)
+INFO:     connection closed
+INFO:socketio_server:WebRTC Socket client disconnected: NZGOXLi0ZnXkhriMAAAH (user: web-client-wlrbz)
+INFO:     connection closed
+INFO:socketio_server:WebRTC Socket client disconnected: 2uXO2qE8fG8v2XhxAAAF (user: web-client-w7dr0)
+INFO:     ('127.0.0.1', 62712) - "WebSocket /?EIO=4&transport=websocket" [accepted]
+INFO:     connection open
+INFO:socketio_server:Connection attempt from yUhUsLDNnZON0FX9AAAJ with auth: {'user_id': 'web-client-cem9g'}
+INFO:socketio_server:WebRTC Socket client connected: yUhUsLDNnZON0FX9AAAJ as user web-client-cem9g
+INFO:socketio_server:Attempting to set user session in Redis for web-client-cem9g
+INFO:socketio_server:Successfully set user session in Redis for web-client-cem9g
+INFO:socketio_server:Connect handler for yUhUsLDNnZON0FX9AAAJ completed successfully. Sending ack.
+INFO:     127.0.0.1:62713 - "GET /api/webrtc/ice-config HTTP/1.1" 200 OK
+INFO:     ('127.0.0.1', 62716) - "WebSocket /?EIO=4&transport=websocket" [accepted]
+INFO:     connection open
+INFO:socketio_server:Connection attempt from T9WroKIVKoEEktEoAAAL with auth: {'user_id': 'web-client-cem9g'}
+INFO:socketio_server:WebRTC Socket client connected: T9WroKIVKoEEktEoAAAL as user web-client-cem9g
+INFO:socketio_server:Attempting to set user session in Redis for web-client-cem9g
+INFO:socketio_server:Successfully set user session in Redis for web-client-cem9g
+INFO:socketio_server:Connect handler for T9WroKIVKoEEktEoAAAL completed successfully. Sending ack.
+INFO:     127.0.0.1:62713 - "GET /api/webrtc/ice-config HTTP/1.1" 200 OK
+received event "webrtc_initiate_call" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_initiate_call" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio_server:📞 Call initiation: web-client-cem9g -> web-client-cem9g (Call ID: c9c6201c-08cf-4dbb-b83e-7132731eef98)
+yUhUsLDNnZON0FX9AAAJ is entering room call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:yUhUsLDNnZON0FX9AAAJ is entering room call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio_server:📱 Sending incoming call to web-client-cem9g (socket: T9WroKIVKoEEktEoAAAL)
+emitting event "webrtc_incoming_call" to T9WroKIVKoEEktEoAAAL [/]
+INFO:socketio.server:emitting event "webrtc_incoming_call" to T9WroKIVKoEEktEoAAAL [/]
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (193 bytes)
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (204 bytes)
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+received event "join_webrtc_call_room" from T9WroKIVKoEEktEoAAAL [/]
+INFO:socketio.server:received event "join_webrtc_call_room" from T9WroKIVKoEEktEoAAAL [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (193 bytes)
+T9WroKIVKoEEktEoAAAL is entering room call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:T9WroKIVKoEEktEoAAAL is entering room call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio_server:📥 User T9WroKIVKoEEktEoAAAL joined call room call_c9c6201c-08cf-4dbb-b83e-7132731eef98
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (204 bytes)
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (193 bytes)
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (204 bytes)
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (193 bytes)
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (204 bytes)
+INFO:socketio_server:✅ Incoming call notification sent to web-client-cem9g
+emitting event "webrtc_call_initiated" to yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:emitting event "webrtc_call_initiated" to yUhUsLDNnZON0FX9AAAJ [/]
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (4852 bytes)
+emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio_server:🎯 OFFER message forwarded to call room call_c9c6201c-08cf-4dbb-b83e-7132731eef98
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (262 bytes)
+emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (262 bytes)
+emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (262 bytes)
+emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (262 bytes)
+emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (170 bytes)
+emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from yUhUsLDNnZON0FX9AAAJ [/]
+📡 Processing WebRTC message for connection: webrtc_yUhUsLDNnZON0FX9AAAJ (170 bytes)
+emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+received event "webrtc_call_response" from T9WroKIVKoEEktEoAAAL [/]
+INFO:socketio.server:received event "webrtc_call_response" from T9WroKIVKoEEktEoAAAL [/]
+T9WroKIVKoEEktEoAAAL is entering room call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:T9WroKIVKoEEktEoAAAL is entering room call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+emitting event "webrtc_call_response_received" to T9WroKIVKoEEktEoAAAL [/]
+INFO:socketio.server:emitting event "webrtc_call_response_received" to T9WroKIVKoEEktEoAAAL [/]
+received event "webrtc_signaling_message" from T9WroKIVKoEEktEoAAAL [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from T9WroKIVKoEEktEoAAAL [/]
+📡 Processing WebRTC message for connection: webrtc_T9WroKIVKoEEktEoAAAL (4061 bytes)
+emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio_server:🎯 ANSWER message forwarded to call room call_c9c6201c-08cf-4dbb-b83e-7132731eef98
+received event "webrtc_signaling_message" from T9WroKIVKoEEktEoAAAL [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from T9WroKIVKoEEktEoAAAL [/]
+📡 Processing WebRTC message for connection: webrtc_T9WroKIVKoEEktEoAAAL (227 bytes)
+emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+received event "webrtc_signaling_message" from T9WroKIVKoEEktEoAAAL [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from T9WroKIVKoEEktEoAAAL [/]
+📡 Processing WebRTC message for connection: webrtc_T9WroKIVKoEEktEoAAAL (238 bytes)
+emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+received event "webrtc_signaling_message" from T9WroKIVKoEEktEoAAAL [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from T9WroKIVKoEEktEoAAAL [/]
+📡 Processing WebRTC message for connection: webrtc_T9WroKIVKoEEktEoAAAL (262 bytes)
+emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+received event "webrtc_signaling_message" from T9WroKIVKoEEktEoAAAL [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from T9WroKIVKoEEktEoAAAL [/]
+📡 Processing WebRTC message for connection: webrtc_T9WroKIVKoEEktEoAAAL (170 bytes)
+emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_c9c6201c-08cf-4dbb-b83e-7132731eef98 [/]
+INFO:socketio_server:WebRTC Socket client disconnected: T9WroKIVKoEEktEoAAAL (user: web-client-cem9g)
+INFO:socketio_server:WebRTC Socket client disconnected: yUhUsLDNnZON0FX9AAAJ (user: web-client-cem9g)
+INFO:     connection closed
+INFO:     connection closed
+INFO:     ('127.0.0.1', 62735) - "WebSocket /?EIO=4&transport=websocket" [accepted]
+INFO:     connection open
+INFO:socketio_server:Connection attempt from fetTEVU5iTyWiCyeAAAN with auth: {'user_id': 'web-client-z44vg'}
+INFO:socketio_server:WebRTC Socket client connected: fetTEVU5iTyWiCyeAAAN as user web-client-z44vg
+INFO:socketio_server:Attempting to set user session in Redis for web-client-z44vg
+INFO:socketio_server:Successfully set user session in Redis for web-client-z44vg
+INFO:socketio_server:Connect handler for fetTEVU5iTyWiCyeAAAN completed successfully. Sending ack.
+INFO:     127.0.0.1:62736 - "GET /api/webrtc/ice-config HTTP/1.1" 200 OK
+INFO:     ('127.0.0.1', 62739) - "WebSocket /?EIO=4&transport=websocket" [accepted]
+INFO:     connection open
+INFO:socketio_server:Connection attempt from 5V5kJm6TwOrVny6IAAAP with auth: {'user_id': 'web-client-pmr0g'}
+INFO:socketio_server:WebRTC Socket client connected: 5V5kJm6TwOrVny6IAAAP as user web-client-pmr0g
+INFO:socketio_server:Attempting to set user session in Redis for web-client-pmr0g
+INFO:socketio_server:Successfully set user session in Redis for web-client-pmr0g
+INFO:socketio_server:Connect handler for 5V5kJm6TwOrVny6IAAAP completed successfully. Sending ack.
+INFO:     127.0.0.1:62736 - "GET /api/webrtc/ice-config HTTP/1.1" 200 OK
+received event "webrtc_initiate_call" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_initiate_call" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio_server:📞 Call initiation: web-client-pmr0g -> web-client-z44vg (Call ID: 79deacbe-5962-474e-8c22-9dd922746ad1)
+5V5kJm6TwOrVny6IAAAP is entering room call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:5V5kJm6TwOrVny6IAAAP is entering room call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio_server:📱 Sending incoming call to web-client-z44vg (socket: fetTEVU5iTyWiCyeAAAN)
+emitting event "webrtc_incoming_call" to fetTEVU5iTyWiCyeAAAN [/]
+INFO:socketio.server:emitting event "webrtc_incoming_call" to fetTEVU5iTyWiCyeAAAN [/]
+INFO:socketio_server:✅ Incoming call notification sent to web-client-z44vg
+emitting event "webrtc_call_initiated" to 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:emitting event "webrtc_call_initiated" to 5V5kJm6TwOrVny6IAAAP [/]
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (193 bytes)
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (204 bytes)
+received event "join_webrtc_call_room" from fetTEVU5iTyWiCyeAAAN [/]
+INFO:socketio.server:received event "join_webrtc_call_room" from fetTEVU5iTyWiCyeAAAN [/]
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+fetTEVU5iTyWiCyeAAAN is entering room call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:fetTEVU5iTyWiCyeAAAN is entering room call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio_server:📥 User fetTEVU5iTyWiCyeAAAN joined call room call_79deacbe-5962-474e-8c22-9dd922746ad1
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (193 bytes)
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (204 bytes)
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (193 bytes)
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (204 bytes)
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (193 bytes)
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (204 bytes)
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (4851 bytes)
+emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio_server:🎯 OFFER message forwarded to call room call_79deacbe-5962-474e-8c22-9dd922746ad1
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (262 bytes)
+emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (262 bytes)
+emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (170 bytes)
+emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (262 bytes)
+emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (262 bytes)
+emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from 5V5kJm6TwOrVny6IAAAP [/]
+📡 Processing WebRTC message for connection: webrtc_5V5kJm6TwOrVny6IAAAP (170 bytes)
+emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+received event "webrtc_call_response" from fetTEVU5iTyWiCyeAAAN [/]
+INFO:socketio.server:received event "webrtc_call_response" from fetTEVU5iTyWiCyeAAAN [/]
+fetTEVU5iTyWiCyeAAAN is entering room call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:fetTEVU5iTyWiCyeAAAN is entering room call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+emitting event "webrtc_call_response_received" to 5V5kJm6TwOrVny6IAAAP [/]
+INFO:socketio.server:emitting event "webrtc_call_response_received" to 5V5kJm6TwOrVny6IAAAP [/]
+received event "webrtc_signaling_message" from fetTEVU5iTyWiCyeAAAN [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from fetTEVU5iTyWiCyeAAAN [/]
+📡 Processing WebRTC message for connection: webrtc_fetTEVU5iTyWiCyeAAAN (4063 bytes)
+emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio_server:🎯 ANSWER message forwarded to call room call_79deacbe-5962-474e-8c22-9dd922746ad1
+received event "webrtc_signaling_message" from fetTEVU5iTyWiCyeAAAN [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from fetTEVU5iTyWiCyeAAAN [/]
+📡 Processing WebRTC message for connection: webrtc_fetTEVU5iTyWiCyeAAAN (227 bytes)
+emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+received event "webrtc_signaling_message" from fetTEVU5iTyWiCyeAAAN [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from fetTEVU5iTyWiCyeAAAN [/]
+📡 Processing WebRTC message for connection: webrtc_fetTEVU5iTyWiCyeAAAN (238 bytes)
+emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+received event "webrtc_signaling_message" from fetTEVU5iTyWiCyeAAAN [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from fetTEVU5iTyWiCyeAAAN [/]
+📡 Processing WebRTC message for connection: webrtc_fetTEVU5iTyWiCyeAAAN (262 bytes)
+emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+received event "webrtc_signaling_message" from fetTEVU5iTyWiCyeAAAN [/]
+INFO:socketio.server:received event "webrtc_signaling_message" from fetTEVU5iTyWiCyeAAAN [/]
+📡 Processing WebRTC message for connection: webrtc_fetTEVU5iTyWiCyeAAAN (170 bytes)
+emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:socketio.server:emitting event "webrtc_signaling_message" to call_79deacbe-5962-474e-8c22-9dd922746ad1 [/]
+INFO:     connection closed
+INFO:socketio_server:WebRTC Socket client disconnected: fetTEVU5iTyWiCyeAAAN (user: web-client-z44vg)
+INFO:     connection closed
+INFO:socketio_server:WebRTC Socket client disconnected: 5V5kJm6TwOrVny6IAAAP (user: web-client-pmr0g)

@@ -1,0 +1,851 @@
+=================================================
+🚀 Building and Running Zero-Copy Server for Chat Service
+=================================================
+
+[1/4] Checking for prerequisites...
+✅ Prerequisites found.
+
+[2/4] Activating Python environment and installing dependencies...
+WARNING: python-socketio 5.13.0 does not provide the extra 'asyncio-redis'
+
+[notice] A new release of pip is available: 25.1.1 -> 25.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 25.1.1 -> 25.2
+[notice] To update, run: pip install --upgrade pip
+✅ Environment activated and dependencies installed.
+
+[3/4] Building the 'zcasgi' Rust module with maturin...
+(This will compile the Rust code and make it available to Python.)
+→ Running 'cargo clean'...
+     Removed 1136 files, 239.6MiB total
+→ Running 'maturin develop'...
+🔗 Found pyo3 bindings
+🐍 Found CPython 3.9 at /Users/shauncohen/Documents/BatCave/CTRL_CHAT_2/backend/-chatService/venv/bin/python
+   Compiling libc v0.2.174
+   Compiling once_cell v1.21.3
+   Compiling autocfg v1.5.0
+   Compiling proc-macro2 v1.0.95
+   Compiling target-lexicon v0.12.16
+   Compiling unicode-ident v1.0.18
+   Compiling parking_lot_core v0.9.11
+   Compiling scopeguard v1.2.0
+   Compiling bytes v1.10.1
+   Compiling smallvec v1.15.1
+   Compiling pin-project-lite v0.2.16
+   Compiling cfg-if v1.0.1
+   Compiling futures-core v0.3.31
+   Compiling fnv v1.0.7
+   Compiling itoa v1.0.15
+   Compiling tracing-core v0.1.34
+   Compiling hashbrown v0.15.4
+   Compiling system-configuration-sys v0.6.0
+   Compiling core-foundation-sys v0.8.7
+   Compiling equivalent v1.0.2
+   Compiling futures-sink v0.3.31
+   Compiling httparse v1.10.1
+   Compiling lock_api v0.4.13
+   Compiling memoffset v0.9.1
+   Compiling atomic-waker v1.1.2
+   Compiling heck v0.4.1
+   Compiling pin-utils v0.1.0
+   Compiling portable-atomic v1.11.1
+   Compiling slab v0.4.10
+   Compiling futures-task v0.3.31
+   Compiling try-lock v0.2.5
+   Compiling tracing v0.1.41
+   Compiling http v1.3.1
+   Compiling want v0.3.1
+   Compiling futures-util v0.3.31
+   Compiling futures-channel v0.3.31
+   Compiling httpdate v1.0.3
+   Compiling bitflags v2.9.1
+   Compiling pyo3-build-config v0.21.2
+   Compiling quote v1.0.40
+   Compiling mio v1.0.4
+   Compiling signal-hook-registry v1.4.5
+   Compiling socket2 v0.5.10
+   Compiling indexmap v2.10.0
+   Compiling syn v2.0.104
+   Compiling parking_lot v0.12.4
+   Compiling core-foundation v0.9.4
+   Compiling tower-service v0.3.3
+   Compiling ipnet v2.11.0
+   Compiling http-body v1.0.1
+   Compiling system-configuration v0.6.1
+   Compiling unindent v0.2.4
+   Compiling base64 v0.22.1
+   Compiling indoc v2.0.6
+   Compiling percent-encoding v2.3.1
+   Compiling http-body-util v0.1.3
+   Compiling pyo3-ffi v0.21.2
+   Compiling pyo3 v0.21.2
+   Compiling pyo3-macros-backend v0.21.2
+   Compiling tokio-macros v2.5.0
+   Compiling tokio v1.46.1
+   Compiling pyo3-macros v0.21.2
+   Compiling tokio-util v0.7.15
+   Compiling h2 v0.4.11
+   Compiling hyper v1.6.0
+   Compiling hyper-util v0.1.15
+   Compiling zcasgi v0.1.0 (/Users/shauncohen/Documents/BatCave/CTRL_CHAT_2/backend/-chatService/zcasgi)
+warning: use of deprecated method `pyo3::deprecations::GilRefs::<T>::function_arg`: use `&Bound<'_, T>` instead for this function argument
+  --> src/lib.rs:57:24
+   |
+57 | fn zcasgi(_py: Python, m: &PyModule) -> PyResult<()> {
+   |                        ^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: `zcasgi` (lib) generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 23.15s
+📦 Built wheel for CPython 3.9 to /var/folders/g0/xdw11tss35z9g1lxtlxkhw940000gn/T/.tmptZ4gfw/zcasgi-0.1.0-cp39-cp39-macosx_11_0_arm64.whl
+✏️ Setting installed package as editable
+🛠 Installed zcasgi-0.1.0
+✅ Rust module built and installed successfully.
+
+[4/4] Starting the server...
+(Running the 'start_zcasgi.py' script which imports the Rust module.)
+/Users/shauncohen/Documents/BatCave/CTRL_CHAT_2/backend/-chatService/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+INFO:root:Chat service configuration loaded successfully
+INFO:root:Chat database initialized successfully
+DEBUG:asyncio:Using selector: KqueueSelector
+INFO:root:🔍 Prometheus metrics server started on port 8003
+INFO:root:Chat database initialized successfully
+INFO:zcasgi_enhanced:================================================================================
+INFO:zcasgi_enhanced:🚀 Zero-Copy Enhanced Chat Server
+INFO:zcasgi_enhanced:================================================================================
+INFO:zcasgi_enhanced:Integration Strategy:
+INFO:zcasgi_enhanced:��� Keeps existing Python Socket.IO and FastAPI logic
+INFO:zcasgi_enhanced:• Adds zero-copy optimizations to performance-critical paths
+INFO:zcasgi_enhanced:• Maintains full compatibility with current architecture
+INFO:zcasgi_enhanced:• No disruption to existing application behavior
+INFO:zcasgi_enhanced:================================================================================
+INFO:zcasgi_enhanced:Zero-Copy Engine Available: True
+INFO:zcasgi_enhanced:Zero-Copy Mode Enabled: True
+INFO:zcasgi_enhanced:Engine Version: unknown
+INFO:zcasgi_enhanced:Engine Description: N/A
+INFO:zcasgi_enhanced:================================================================================
+DEBUG:asyncio:Using selector: KqueueSelector
+INFO:zcasgi_enhanced:🚀 Starting Zero-Copy Enhanced Chat Server...
+INFO:zcasgi_enhanced:   Host: 0.0.0.0
+INFO:zcasgi_enhanced:   Port: 8007
+INFO:zcasgi_enhanced:   Zero-Copy Enabled: True
+INFO:zcasgi_enhanced:   Engine Version: unknown
+INFO:zcasgi_enhanced:✅ Using existing FastAPI application
+INFO:zcasgi_enhanced:✅ Zero-Copy Enhanced Chat Server is running!
+INFO:zcasgi_enhanced:   Socket.IO endpoint: ws://0.0.0.0:8007/socket.io/
+INFO:zcasgi_enhanced:   FastAPI endpoints: http://0.0.0.0:8007/
+INFO:zcasgi_enhanced:   Health check: http://0.0.0.0:8007/health
+INFO:zcasgi_enhanced:   Metrics: http://0.0.0.0:8007/metrics
+INFO:     Started server process [57794]
+INFO:     Waiting for application startup.
+INFO:root:Message queue processing started.
+INFO:root:Message queue processor started.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8007 (Press CTRL+C to quit)
+aioredis backend initialized.
+INFO:socketio.server:aioredis backend initialized.
+Environment variables loaded:
+CHAT_DATABASE_PATH: chat.db
+JWT_SECRET: Set
+✅ Successfully imported socketio server
+✅ Successfully imported zcasgi zero-copy engine
+✅ Successfully imported existing FastAPI application
+INFO:     127.0.0.1:57697 - "GET /socket.io/?EIO=4&transport=polling&t=qr7sm2yy HTTP/1.1" 200 OK
+INFO:root:Client authenticated: DyR6eAgZVdvTimqIAAAB as user caccf5d8-2337-4b1e-9216-0fcf666381d3
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b58c10>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b58c10> completed
+INFO:     127.0.0.1:57701 - "WebSocket /socket.io/?EIO=4&transport=websocket&sid=annUoRS5X75ucTSiAAAA" [accepted]
+INFO:     connection open
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107b6e120>, 'SELECT um.*, m.*, u.name as sender_name, u.avatar_url as sender_avatar_url\n                       FROM undelivered_messages um\n                       JOIN messages m ON um.message_id = m.message_id\n                       JOIN users u ON m.sender_profile_id = u.profile_id\n                       WHERE um.recipient_profile_id = ? AND um.delivered_at IS NULL\n                       ORDER BY m.created_at ASC', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',))
+INFO:     127.0.0.1:57702 - "GET /socket.io/?EIO=4&transport=polling&t=qr7t8j36&sid=annUoRS5X75ucTSiAAAA HTTP/1.1" 200 OK
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107b6e120>, 'SELECT um.*, m.*, u.name as sender_name, u.avatar_url as sender_avatar_url\n                       FROM undelivered_messages um\n                       JOIN messages m ON um.message_id = m.message_id\n                       JOIN users u ON m.sender_profile_id = u.profile_id\n                       WHERE um.recipient_profile_id = ? AND um.delivered_at IS NULL\n                       ORDER BY m.created_at ASC', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107b2cce0>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107b2cce0>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107b6e120>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107b6e120>) completed
+INFO:root:📬 Delivering 3 offline messages to user caccf5d8-2337-4b1e-9216-0fcf666381d3
+INFO:     127.0.0.1:57697 - "POST /socket.io/?EIO=4&transport=polling&t=qr7t7tuc&sid=annUoRS5X75ucTSiAAAA HTTP/1.1" 200 OK
+emitting event "message" to DyR6eAgZVdvTimqIAAAB [/]
+INFO:socketio.server:emitting event "message" to DyR6eAgZVdvTimqIAAAB [/]
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b589d0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b589d0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107ab9e40>, 'UPDATE undelivered_messages \n                       SET delivered_at = CURRENT_TIMESTAMP \n                       WHERE message_id = ? AND recipient_profile_id = ? AND delivered_at IS NULL', (514, 'caccf5d8-2337-4b1e-9216-0fcf666381d3'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107ab9e40>, 'UPDATE undelivered_messages \n                       SET delivered_at = CURRENT_TIMESTAMP \n                       WHERE message_id = ? AND recipient_profile_id = ? AND delivered_at IS NULL', (514, 'caccf5d8-2337-4b1e-9216-0fcf666381d3')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107ab9e40>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107ab9e40>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107ab9e40>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107ab9e40>) completed
+emitting event "message" to DyR6eAgZVdvTimqIAAAB [/]
+INFO:socketio.server:emitting event "message" to DyR6eAgZVdvTimqIAAAB [/]
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b58a60>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b58a60> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107ab9e40>, 'UPDATE undelivered_messages \n                       SET delivered_at = CURRENT_TIMESTAMP \n                       WHERE message_id = ? AND recipient_profile_id = ? AND delivered_at IS NULL', (516, 'caccf5d8-2337-4b1e-9216-0fcf666381d3'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107ab9e40>, 'UPDATE undelivered_messages \n                       SET delivered_at = CURRENT_TIMESTAMP \n                       WHERE message_id = ? AND recipient_profile_id = ? AND delivered_at IS NULL', (516, 'caccf5d8-2337-4b1e-9216-0fcf666381d3')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107ab9e40>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107ab9e40>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107ab9e40>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107ab9e40>) completed
+emitting event "message" to DyR6eAgZVdvTimqIAAAB [/]
+INFO:socketio.server:emitting event "message" to DyR6eAgZVdvTimqIAAAB [/]
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b589d0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b589d0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107ab9e40>, 'UPDATE undelivered_messages \n                       SET delivered_at = CURRENT_TIMESTAMP \n                       WHERE message_id = ? AND recipient_profile_id = ? AND delivered_at IS NULL', (518, 'caccf5d8-2337-4b1e-9216-0fcf666381d3'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107ab9e40>, 'UPDATE undelivered_messages \n                       SET delivered_at = CURRENT_TIMESTAMP \n                       WHERE message_id = ? AND recipient_profile_id = ? AND delivered_at IS NULL', (518, 'caccf5d8-2337-4b1e-9216-0fcf666381d3')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107ab9e40>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107ab9e40>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107ab9e40>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107ab9e40>) completed
+received event "join_user_room" from DyR6eAgZVdvTimqIAAAB [/]
+INFO:socketio.server:received event "join_user_room" from DyR6eAgZVdvTimqIAAAB [/]
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b92670>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b92670> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107ab9e40>, 'SELECT um.*, m.*, u.name as sender_name, u.avatar_url as sender_avatar_url\n                       FROM undelivered_messages um\n                       JOIN messages m ON um.message_id = m.message_id\n                       JOIN users u ON m.sender_profile_id = u.profile_id\n                       WHERE um.recipient_profile_id = ? AND um.delivered_at IS NULL\n                       ORDER BY m.created_at ASC', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107ab9e40>, 'SELECT um.*, m.*, u.name as sender_name, u.avatar_url as sender_avatar_url\n                       FROM undelivered_messages um\n                       JOIN messages m ON um.message_id = m.message_id\n                       JOIN users u ON m.sender_profile_id = u.profile_id\n                       WHERE um.recipient_profile_id = ? AND um.delivered_at IS NULL\n                       ORDER BY m.created_at ASC', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107b2c730>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107b2c730>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107ab9e40>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107ab9e40>) completed
+INFO:     127.0.0.1:57697 - "GET /api/chat/undelivered HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:root:Client disconnected: DyR6eAgZVdvTimqIAAAB
+INFO:     127.0.0.1:49399 - "GET /socket.io/?EIO=4&transport=polling&t=74pm0a14 HTTP/1.1" 200 OK
+INFO:root:Client authenticated: KS7KuVb39SVrkwFHAAAD as user caccf5d8-2337-4b1e-9216-0fcf666381d3
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b92430>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b92430> completed
+INFO:     127.0.0.1:49402 - "WebSocket /socket.io/?EIO=4&transport=websocket&sid=ZzjisaPT4NA2W1LhAAAC" [accepted]
+INFO:     connection open
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4120>, 'SELECT um.*, m.*, u.name as sender_name, u.avatar_url as sender_avatar_url\n                       FROM undelivered_messages um\n                       JOIN messages m ON um.message_id = m.message_id\n                       JOIN users u ON m.sender_profile_id = u.profile_id\n                       WHERE um.recipient_profile_id = ? AND um.delivered_at IS NULL\n                       ORDER BY m.created_at ASC', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',))
+INFO:     127.0.0.1:49401 - "GET /socket.io/?EIO=4&transport=polling&t=74pnqo82&sid=ZzjisaPT4NA2W1LhAAAC HTTP/1.1" 200 OK
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4120>, 'SELECT um.*, m.*, u.name as sender_name, u.avatar_url as sender_avatar_url\n                       FROM undelivered_messages um\n                       JOIN messages m ON um.message_id = m.message_id\n                       JOIN users u ON m.sender_profile_id = u.profile_id\n                       WHERE um.recipient_profile_id = ? AND um.delivered_at IS NULL\n                       ORDER BY m.created_at ASC', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107b2cb20>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107b2cb20>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4120>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4120>) completed
+INFO:     127.0.0.1:49399 - "POST /socket.io/?EIO=4&transport=polling&t=74pnpno6&sid=ZzjisaPT4NA2W1LhAAAC HTTP/1.1" 200 OK
+received event "join_user_room" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "join_user_room" from KS7KuVb39SVrkwFHAAAD [/]
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b92a60>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b92a60> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107ab9e40>, 'SELECT um.*, m.*, u.name as sender_name, u.avatar_url as sender_avatar_url\n                       FROM undelivered_messages um\n                       JOIN messages m ON um.message_id = m.message_id\n                       JOIN users u ON m.sender_profile_id = u.profile_id\n                       WHERE um.recipient_profile_id = ? AND um.delivered_at IS NULL\n                       ORDER BY m.created_at ASC', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107ab9e40>, 'SELECT um.*, m.*, u.name as sender_name, u.avatar_url as sender_avatar_url\n                       FROM undelivered_messages um\n                       JOIN messages m ON um.message_id = m.message_id\n                       JOIN users u ON m.sender_profile_id = u.profile_id\n                       WHERE um.recipient_profile_id = ? AND um.delivered_at IS NULL\n                       ORDER BY m.created_at ASC', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107b2c8f0>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107b2c8f0>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107ab9e40>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107ab9e40>) completed
+INFO:     127.0.0.1:49399 - "GET /api/chat/undelivered HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49441 - "GET /socket.io/?EIO=4&transport=polling&t=751fj1qu HTTP/1.1" 200 OK
+INFO:root:Client authenticated: KX8N5KsvWjaixjqAAAAF as user e3f05792-447b-4cde-96ef-4d9a69459742
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b92e50>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b92e50> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'SELECT um.*, m.*, u.name as sender_name, u.avatar_url as sender_avatar_url\n                       FROM undelivered_messages um\n                       JOIN messages m ON um.message_id = m.message_id\n                       JOIN users u ON m.sender_profile_id = u.profile_id\n                       WHERE um.recipient_profile_id = ? AND um.delivered_at IS NULL\n                       ORDER BY m.created_at ASC', ('e3f05792-447b-4cde-96ef-4d9a69459742',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'SELECT um.*, m.*, u.name as sender_name, u.avatar_url as sender_avatar_url\n                       FROM undelivered_messages um\n                       JOIN messages m ON um.message_id = m.message_id\n                       JOIN users u ON m.sender_profile_id = u.profile_id\n                       WHERE um.recipient_profile_id = ? AND um.delivered_at IS NULL\n                       ORDER BY m.created_at ASC', ('e3f05792-447b-4cde-96ef-4d9a69459742',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107bbf1f0>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107bbf1f0>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>) completed
+INFO:root:📬 Delivering 2 offline messages to user e3f05792-447b-4cde-96ef-4d9a69459742
+INFO:     127.0.0.1:49441 - "POST /socket.io/?EIO=4&transport=polling&t=751fszl6&sid=FYRqoj1pEeG49X91AAAE HTTP/1.1" 200 OK
+emitting event "message" to KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:emitting event "message" to KX8N5KsvWjaixjqAAAAF [/]
+INFO:     127.0.0.1:49442 - "GET /socket.io/?EIO=4&transport=polling&t=751ft937&sid=FYRqoj1pEeG49X91AAAE HTTP/1.1" 200 OK
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b92ee0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b92ee0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'UPDATE undelivered_messages \n                       SET delivered_at = CURRENT_TIMESTAMP \n                       WHERE message_id = ? AND recipient_profile_id = ? AND delivered_at IS NULL', (515, 'e3f05792-447b-4cde-96ef-4d9a69459742'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'UPDATE undelivered_messages \n                       SET delivered_at = CURRENT_TIMESTAMP \n                       WHERE message_id = ? AND recipient_profile_id = ? AND delivered_at IS NULL', (515, 'e3f05792-447b-4cde-96ef-4d9a69459742')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4300>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>) completed
+emitting event "message" to KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:emitting event "message" to KX8N5KsvWjaixjqAAAAF [/]
+INFO:     127.0.0.1:49441 - "GET /socket.io/?EIO=4&transport=polling&t=751g3q15&sid=FYRqoj1pEeG49X91AAAE HTTP/1.1" 200 OK
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b92ee0>
+INFO:     127.0.0.1:49446 - "WebSocket /socket.io/?EIO=4&transport=websocket&sid=FYRqoj1pEeG49X91AAAE" [accepted]
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b92ee0> completed
+INFO:     connection open
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4030>, 'UPDATE undelivered_messages \n                       SET delivered_at = CURRENT_TIMESTAMP \n                       WHERE message_id = ? AND recipient_profile_id = ? AND delivered_at IS NULL', (517, 'e3f05792-447b-4cde-96ef-4d9a69459742'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4030>, 'UPDATE undelivered_messages \n                       SET delivered_at = CURRENT_TIMESTAMP \n                       WHERE message_id = ? AND recipient_profile_id = ? AND delivered_at IS NULL', (517, 'e3f05792-447b-4cde-96ef-4d9a69459742')) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b92ca0>
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4030>)
+received event "join_user_room" from KX8N5KsvWjaixjqAAAAF [/]
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b92ca0> completed
+INFO:socketio.server:received event "join_user_room" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:     127.0.0.1:49441 - "POST /socket.io/?EIO=4&transport=polling&t=751gdw3n&sid=FYRqoj1pEeG49X91AAAE HTTP/1.1" 200 OK
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4030>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'SELECT um.*, m.*, u.name as sender_name, u.avatar_url as sender_avatar_url\n                       FROM undelivered_messages um\n                       JOIN messages m ON um.message_id = m.message_id\n                       JOIN users u ON m.sender_profile_id = u.profile_id\n                       WHERE um.recipient_profile_id = ? AND um.delivered_at IS NULL\n                       ORDER BY m.created_at ASC', ('e3f05792-447b-4cde-96ef-4d9a69459742',))
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4030>) completed
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'SELECT um.*, m.*, u.name as sender_name, u.avatar_url as sender_avatar_url\n                       FROM undelivered_messages um\n                       JOIN messages m ON um.message_id = m.message_id\n                       JOIN users u ON m.sender_profile_id = u.profile_id\n                       WHERE um.recipient_profile_id = ? AND um.delivered_at IS NULL\n                       ORDER BY m.created_at ASC', ('e3f05792-447b-4cde-96ef-4d9a69459742',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107bbf650>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107bbf650>) completed
+INFO:     127.0.0.1:49447 - "GET /socket.io/?EIO=4&transport=polling&t=751gf3qh&sid=FYRqoj1pEeG49X91AAAE HTTP/1.1" 200 OK
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>) completed
+INFO:     127.0.0.1:49442 - "GET /api/chat/undelivered HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49441 - "GET /socket.io/?EIO=4&transport=polling&t=751gmk48&sid=FYRqoj1pEeG49X91AAAE HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49441 - "GET /socket.io/?EIO=4&transport=polling&t=751gp5g6&sid=FYRqoj1pEeG49X91AAAE HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49441 - "GET /socket.io/?EIO=4&transport=polling&t=751gtosm&sid=FYRqoj1pEeG49X91AAAE HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49441 - "GET /socket.io/?EIO=4&transport=polling&t=751h2xoa&sid=FYRqoj1pEeG49X91AAAE HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49441 - "GET /socket.io/?EIO=4&transport=polling&t=751h5y83&sid=FYRqoj1pEeG49X91AAAE HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49441 - "GET /socket.io/?EIO=4&transport=polling&t=751hd50v&sid=FYRqoj1pEeG49X91AAAE HTTP/1.1" 200 OK
+INFO:root:Creating/getting channel between caccf5d8-2337-4b1e-9216-0fcf666381d3 and e3f05792-447b-4cde-96ef-4d9a69459742
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2f70>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2f70> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'SELECT profile_id FROM users WHERE profile_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'SELECT profile_id FROM users WHERE profile_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2cd50>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2cd50>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'UPDATE users SET name = ? WHERE profile_id = ?', ['User caccf5d8', 'caccf5d8-2337-4b1e-9216-0fcf666381d3'])
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'UPDATE users SET name = ? WHERE profile_id = ?', ['User caccf5d8', 'caccf5d8-2337-4b1e-9216-0fcf666381d3']) completed
+INFO:root:Updated user caccf5d8-2337-4b1e-9216-0fcf666381d3 with new profile info
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4300>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bd10d0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bd10d0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'SELECT profile_id FROM users WHERE profile_id = ?', ('e3f05792-447b-4cde-96ef-4d9a69459742',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'SELECT profile_id FROM users WHERE profile_id = ?', ('e3f05792-447b-4cde-96ef-4d9a69459742',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2cd50>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2cd50>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'UPDATE users SET name = ?, avatar_url = ? WHERE profile_id = ?', ['Dog_1', '/uploads/avatars/e3f05792-447b-4cde-96ef-4d9a69459742_29ec4cfc5e8843208f10802280f95e6b.jpg', 'e3f05792-447b-4cde-96ef-4d9a69459742'])
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'UPDATE users SET name = ?, avatar_url = ? WHERE profile_id = ?', ['Dog_1', '/uploads/avatars/e3f05792-447b-4cde-96ef-4d9a69459742_29ec4cfc5e8843208f10802280f95e6b.jpg', 'e3f05792-447b-4cde-96ef-4d9a69459742']) completed
+INFO:root:Updated user e3f05792-447b-4cde-96ef-4d9a69459742 with new profile info
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4300>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>) completed
+INFO:root:Updated contact profile: e3f05792-447b-4cde-96ef-4d9a69459742 -> Dog_1
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2f70>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2f70> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'SELECT * FROM channels WHERE channel_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'SELECT * FROM channels WHERE channel_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2cd50>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2cd50>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>) completed
+INFO:root:Using existing channel: caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2f70>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2f70> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'INSERT OR IGNORE INTO channel_members (channel_id, profile_id) \n                       VALUES (?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'INSERT OR IGNORE INTO channel_members (channel_id, profile_id) \n                       VALUES (?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4300>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bd20d0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bd20d0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'INSERT OR IGNORE INTO channel_members (channel_id, profile_id) \n                       VALUES (?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'e3f05792-447b-4cde-96ef-4d9a69459742'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'INSERT OR IGNORE INTO channel_members (channel_id, profile_id) \n                       VALUES (?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'e3f05792-447b-4cde-96ef-4d9a69459742')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4300>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>) completed
+INFO:root:Would notify user e3f05792-447b-4cde-96ef-4d9a69459742 to join channel caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742
+INFO:root:Notified user e3f05792-447b-4cde-96ef-4d9a69459742 about new channel caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742
+INFO:     127.0.0.1:49399 - "POST /api/chat/channel HTTP/1.1" 200 OK
+received event "join_channel" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "join_channel" from KS7KuVb39SVrkwFHAAAD [/]
+KS7KuVb39SVrkwFHAAAD is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:KS7KuVb39SVrkwFHAAAD is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:root:Client KS7KuVb39SVrkwFHAAAD joined room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742
+received event "join_channel" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "join_channel" from KS7KuVb39SVrkwFHAAAD [/]
+KS7KuVb39SVrkwFHAAAD is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:KS7KuVb39SVrkwFHAAAD is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:root:Client KS7KuVb39SVrkwFHAAAD joined room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "message" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "message" from KS7KuVb39SVrkwFHAAAD [/]
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b92670>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b92670> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'INSERT INTO messages (channel_id, sender_profile_id, text, attachments, reactions) \n                           VALUES (?, ?, ?, ?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3', 'Rtttt', '[]', '[]'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'INSERT INTO messages (channel_id, sender_profile_id, text, attachments, reactions) \n                           VALUES (?, ?, ?, ?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3', 'Rtttt', '[]', '[]')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4210>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2ee0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2ee0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'SELECT cm.*, u.name, u.avatar_url \n                       FROM channel_members cm \n                       JOIN users u ON cm.profile_id = u.profile_id \n                       WHERE cm.channel_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'SELECT cm.*, u.name, u.avatar_url \n                       FROM channel_members cm \n                       JOIN users u ON cm.profile_id = u.profile_id \n                       WHERE cm.channel_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107bbfd50>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107bbfd50>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bd4040>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bd4040> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (519, '50325593-981b-4164-a64e-7139b9fb8c0e', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (519, '50325593-981b-4164-a64e-7139b9fb8c0e', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4300>) completed
+INFO:root:Queued message 519 for offline delivery to user 50325593-981b-4164-a64e-7139b9fb8c0e
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2ee0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2ee0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (519, 'e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4300>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (519, 'e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4300>) completed
+INFO:root:Queued message 519 for offline delivery to user e3f05792-447b-4cde-96ef-4d9a69459742
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4300>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'SELECT * FROM messages WHERE message_id = ?', (519,))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'SELECT * FROM messages WHERE message_id = ?', (519,)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bbfd50>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bbfd50>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2f70>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2f70> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'SELECT * FROM users WHERE profile_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'SELECT * FROM users WHERE profile_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bbfd50>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bbfd50>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>) completed
+emitting event "message_confirmed" to KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:emitting event "message_confirmed" to KS7KuVb39SVrkwFHAAAD [/]
+emitting event "message" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "message" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "stop_typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "stop_typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:root:Creating/getting channel between e3f05792-447b-4cde-96ef-4d9a69459742 and caccf5d8-2337-4b1e-9216-0fcf666381d3
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bd2040>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bd2040> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'SELECT profile_id FROM users WHERE profile_id = ?', ('e3f05792-447b-4cde-96ef-4d9a69459742',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'SELECT profile_id FROM users WHERE profile_id = ?', ('e3f05792-447b-4cde-96ef-4d9a69459742',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2ca40>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2ca40>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'UPDATE users SET name = ? WHERE profile_id = ?', ['User e3f05792', 'e3f05792-447b-4cde-96ef-4d9a69459742'])
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'UPDATE users SET name = ? WHERE profile_id = ?', ['User e3f05792', 'e3f05792-447b-4cde-96ef-4d9a69459742']) completed
+INFO:root:Updated user e3f05792-447b-4cde-96ef-4d9a69459742 with new profile info
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4210>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bd2160>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bd2160> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'SELECT profile_id FROM users WHERE profile_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'SELECT profile_id FROM users WHERE profile_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2ca40>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2ca40>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'UPDATE users SET name = ?, avatar_url = ? WHERE profile_id = ?', ['cat_1', '/uploads/avatars/caccf5d8-2337-4b1e-9216-0fcf666381d3_77d939d1e94343ecbdf15b78b9e49ce8.jpg', 'caccf5d8-2337-4b1e-9216-0fcf666381d3'])
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'UPDATE users SET name = ?, avatar_url = ? WHERE profile_id = ?', ['cat_1', '/uploads/avatars/caccf5d8-2337-4b1e-9216-0fcf666381d3_77d939d1e94343ecbdf15b78b9e49ce8.jpg', 'caccf5d8-2337-4b1e-9216-0fcf666381d3']) completed
+INFO:root:Updated user caccf5d8-2337-4b1e-9216-0fcf666381d3 with new profile info
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4210>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>) completed
+INFO:root:Updated contact profile: caccf5d8-2337-4b1e-9216-0fcf666381d3 -> cat_1
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bd2040>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bd2040> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'SELECT * FROM channels WHERE channel_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'SELECT * FROM channels WHERE channel_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2ca40>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2ca40>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>) completed
+INFO:root:Using existing channel: caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bd5040>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bd5040> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'INSERT OR IGNORE INTO channel_members (channel_id, profile_id) \n                       VALUES (?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'e3f05792-447b-4cde-96ef-4d9a69459742'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'INSERT OR IGNORE INTO channel_members (channel_id, profile_id) \n                       VALUES (?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'e3f05792-447b-4cde-96ef-4d9a69459742')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4210>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bd5160>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bd5160> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'INSERT OR IGNORE INTO channel_members (channel_id, profile_id) \n                       VALUES (?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'INSERT OR IGNORE INTO channel_members (channel_id, profile_id) \n                       VALUES (?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4210>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>) completed
+INFO:root:Would notify user caccf5d8-2337-4b1e-9216-0fcf666381d3 to join channel caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742
+INFO:root:Notified user caccf5d8-2337-4b1e-9216-0fcf666381d3 about new channel caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742
+INFO:     127.0.0.1:49441 - "POST /api/chat/channel HTTP/1.1" 200 OK
+received event "join_channel" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "join_channel" from KX8N5KsvWjaixjqAAAAF [/]
+KX8N5KsvWjaixjqAAAAF is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:KX8N5KsvWjaixjqAAAAF is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:root:Client KX8N5KsvWjaixjqAAAAF joined room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742
+received event "join_channel" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "join_channel" from KX8N5KsvWjaixjqAAAAF [/]
+KX8N5KsvWjaixjqAAAAF is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:KX8N5KsvWjaixjqAAAAF is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:root:Client KX8N5KsvWjaixjqAAAAF joined room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "message" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "message" from KX8N5KsvWjaixjqAAAAF [/]
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2700>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2700> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'INSERT INTO messages (channel_id, sender_profile_id, text, attachments, reactions) \n                           VALUES (?, ?, ?, ?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'e3f05792-447b-4cde-96ef-4d9a69459742', 'Tttt', '[]', '[]'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'INSERT INTO messages (channel_id, sender_profile_id, text, attachments, reactions) \n                           VALUES (?, ?, ?, ?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'e3f05792-447b-4cde-96ef-4d9a69459742', 'Tttt', '[]', '[]')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4210>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2dc0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2dc0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4030>, 'SELECT cm.*, u.name, u.avatar_url \n                       FROM channel_members cm \n                       JOIN users u ON cm.profile_id = u.profile_id \n                       WHERE cm.channel_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4030>, 'SELECT cm.*, u.name, u.avatar_url \n                       FROM channel_members cm \n                       JOIN users u ON cm.profile_id = u.profile_id \n                       WHERE cm.channel_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107bd28f0>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107bd28f0>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4030>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bd8160>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bd8160> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4030>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (520, '50325593-981b-4164-a64e-7139b9fb8c0e', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4030>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (520, '50325593-981b-4164-a64e-7139b9fb8c0e', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4030>) completed
+INFO:root:Queued message 520 for offline delivery to user 50325593-981b-4164-a64e-7139b9fb8c0e
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4030>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2dc0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2dc0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4030>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (520, 'caccf5d8-2337-4b1e-9216-0fcf666381d3', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4030>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (520, 'caccf5d8-2337-4b1e-9216-0fcf666381d3', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bb4030>) completed
+INFO:root:Queued message 520 for offline delivery to user caccf5d8-2337-4b1e-9216-0fcf666381d3
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4030>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'SELECT * FROM messages WHERE message_id = ?', (520,))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'SELECT * FROM messages WHERE message_id = ?', (520,)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bd28f0>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bd28f0>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2ee0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2ee0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'SELECT * FROM users WHERE profile_id = ?', ('e3f05792-447b-4cde-96ef-4d9a69459742',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bb4210>, 'SELECT * FROM users WHERE profile_id = ?', ('e3f05792-447b-4cde-96ef-4d9a69459742',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bd28f0>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bd28f0>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bb4210>) completed
+emitting event "message_confirmed" to KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:emitting event "message_confirmed" to KX8N5KsvWjaixjqAAAAF [/]
+emitting event "message" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "message" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "join_channel" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "join_channel" from KS7KuVb39SVrkwFHAAAD [/]
+KS7KuVb39SVrkwFHAAAD is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:KS7KuVb39SVrkwFHAAAD is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:root:Client KS7KuVb39SVrkwFHAAAD joined room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742
+received event "stop_typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "stop_typing" from KX8N5KsvWjaixjqAAAAF [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "message" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "message" from KS7KuVb39SVrkwFHAAAD [/]
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b92e50>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b92e50> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd8030>, 'INSERT INTO messages (channel_id, sender_profile_id, text, attachments, reactions) \n                           VALUES (?, ?, ?, ?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3', 'Trttt', '[]', '[]'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd8030>, 'INSERT INTO messages (channel_id, sender_profile_id, text, attachments, reactions) \n                           VALUES (?, ?, ?, ?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3', 'Trttt', '[]', '[]')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd8030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd8030>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b92ee0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b92ee0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd8120>, 'SELECT cm.*, u.name, u.avatar_url \n                       FROM channel_members cm \n                       JOIN users u ON cm.profile_id = u.profile_id \n                       WHERE cm.channel_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd8120>, 'SELECT cm.*, u.name, u.avatar_url \n                       FROM channel_members cm \n                       JOIN users u ON cm.profile_id = u.profile_id \n                       WHERE cm.channel_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107bd2b90>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107bd2b90>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd8120>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd8120>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bd9040>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bd9040> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd8120>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (521, '50325593-981b-4164-a64e-7139b9fb8c0e', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd8120>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (521, '50325593-981b-4164-a64e-7139b9fb8c0e', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd8120>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd8120>) completed
+INFO:root:Queued message 521 for offline delivery to user 50325593-981b-4164-a64e-7139b9fb8c0e
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd8120>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd8120>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b92ee0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b92ee0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd8120>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (521, 'e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd8120>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (521, 'e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd8120>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd8120>) completed
+INFO:root:Queued message 521 for offline delivery to user e3f05792-447b-4cde-96ef-4d9a69459742
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd8120>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd8120>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd8030>, 'SELECT * FROM messages WHERE message_id = ?', (521,))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd8030>, 'SELECT * FROM messages WHERE message_id = ?', (521,)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bd2b90>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bd2b90>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd8030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd8030>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b92ee0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b92ee0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd8030>, 'SELECT * FROM users WHERE profile_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd8030>, 'SELECT * FROM users WHERE profile_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bd2b90>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bd2b90>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd8030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd8030>) completed
+emitting event "message_confirmed" to KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:emitting event "message_confirmed" to KS7KuVb39SVrkwFHAAAD [/]
+emitting event "message" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "message" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "join_channel" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "join_channel" from KX8N5KsvWjaixjqAAAAF [/]
+KX8N5KsvWjaixjqAAAAF is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:KX8N5KsvWjaixjqAAAAF is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:root:Client KX8N5KsvWjaixjqAAAAF joined room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742
+received event "stop_typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "stop_typing" from KS7KuVb39SVrkwFHAAAD [/]
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "typing" from KX8N5KsvWjaixjqAAAAF [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "message" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "message" from KX8N5KsvWjaixjqAAAAF [/]
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b92f70>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b92f70> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9030>, 'INSERT INTO messages (channel_id, sender_profile_id, text, attachments, reactions) \n                           VALUES (?, ?, ?, ?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'e3f05792-447b-4cde-96ef-4d9a69459742', 'Aaaa', '[]', '[]'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9030>, 'INSERT INTO messages (channel_id, sender_profile_id, text, attachments, reactions) \n                           VALUES (?, ?, ?, ?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'e3f05792-447b-4cde-96ef-4d9a69459742', 'Aaaa', '[]', '[]')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd9030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd9030>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2700>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2700> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9120>, 'SELECT cm.*, u.name, u.avatar_url \n                       FROM channel_members cm \n                       JOIN users u ON cm.profile_id = u.profile_id \n                       WHERE cm.channel_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9120>, 'SELECT cm.*, u.name, u.avatar_url \n                       FROM channel_members cm \n                       JOIN users u ON cm.profile_id = u.profile_id \n                       WHERE cm.channel_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107bd61f0>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107bd61f0>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9120>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9120>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bda040>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bda040> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9120>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (522, '50325593-981b-4164-a64e-7139b9fb8c0e', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9120>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (522, '50325593-981b-4164-a64e-7139b9fb8c0e', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd9120>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd9120>) completed
+INFO:root:Queued message 522 for offline delivery to user 50325593-981b-4164-a64e-7139b9fb8c0e
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9120>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9120>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2700>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2700> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9120>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (522, 'caccf5d8-2337-4b1e-9216-0fcf666381d3', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9120>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (522, 'caccf5d8-2337-4b1e-9216-0fcf666381d3', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd9120>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd9120>) completed
+INFO:root:Queued message 522 for offline delivery to user caccf5d8-2337-4b1e-9216-0fcf666381d3
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9120>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9120>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9030>, 'SELECT * FROM messages WHERE message_id = ?', (522,))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9030>, 'SELECT * FROM messages WHERE message_id = ?', (522,)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bd61f0>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bd61f0>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9030>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2dc0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2dc0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9030>, 'SELECT * FROM users WHERE profile_id = ?', ('e3f05792-447b-4cde-96ef-4d9a69459742',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9030>, 'SELECT * FROM users WHERE profile_id = ?', ('e3f05792-447b-4cde-96ef-4d9a69459742',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bd61f0>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107bd61f0>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9030>) completed
+emitting event "message_confirmed" to KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:emitting event "message_confirmed" to KX8N5KsvWjaixjqAAAAF [/]
+emitting event "message" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "message" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "join_channel" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "join_channel" from KS7KuVb39SVrkwFHAAAD [/]
+KS7KuVb39SVrkwFHAAAD is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:KS7KuVb39SVrkwFHAAAD is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:root:Client KS7KuVb39SVrkwFHAAAD joined room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742
+received event "stop_typing" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "stop_typing" from KX8N5KsvWjaixjqAAAAF [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "typing" from KS7KuVb39SVrkwFHAAAD [/]
+emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "typing" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "message" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "message" from KS7KuVb39SVrkwFHAAAD [/]
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107b92670>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107b92670> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9030>, 'INSERT INTO messages (channel_id, sender_profile_id, text, attachments, reactions) \n                           VALUES (?, ?, ?, ?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3', 'Asaweewr', '[]', '[]'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9030>, 'INSERT INTO messages (channel_id, sender_profile_id, text, attachments, reactions) \n                           VALUES (?, ?, ?, ?, ?)', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3', 'Asaweewr', '[]', '[]')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd9030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd9030>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2dc0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2dc0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9210>, 'SELECT cm.*, u.name, u.avatar_url \n                       FROM channel_members cm \n                       JOIN users u ON cm.profile_id = u.profile_id \n                       WHERE cm.channel_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9210>, 'SELECT cm.*, u.name, u.avatar_url \n                       FROM channel_members cm \n                       JOIN users u ON cm.profile_id = u.profile_id \n                       WHERE cm.channel_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107b2cce0>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchall of sqlite3.Cursor object at 0x107b2cce0>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9210>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bda040>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bda040> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9210>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (523, '50325593-981b-4164-a64e-7139b9fb8c0e', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9210>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (523, '50325593-981b-4164-a64e-7139b9fb8c0e', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd9210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd9210>) completed
+INFO:root:Queued message 523 for offline delivery to user 50325593-981b-4164-a64e-7139b9fb8c0e
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9210>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2dc0>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2dc0> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9210>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (523, 'e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742'))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9210>, 'INSERT INTO undelivered_messages (message_id, recipient_profile_id, channel_id) \n                       VALUES (?, ?, ?)', (523, 'e3f05792-447b-4cde-96ef-4d9a69459742', 'caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742')) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd9210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method commit of sqlite3.Connection object at 0x107bd9210>) completed
+INFO:root:Queued message 523 for offline delivery to user e3f05792-447b-4cde-96ef-4d9a69459742
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9210>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9210>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9030>, 'SELECT * FROM messages WHERE message_id = ?', (523,))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9030>, 'SELECT * FROM messages WHERE message_id = ?', (523,)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2cce0>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2cce0>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9030>) completed
+DEBUG:aiosqlite:executing <function connect.<locals>.connector at 0x107bc2f70>
+DEBUG:aiosqlite:operation <function connect.<locals>.connector at 0x107bc2f70> completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9030>, 'SELECT * FROM users WHERE profile_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',))
+DEBUG:aiosqlite:operation functools.partial(<built-in method execute of sqlite3.Connection object at 0x107bd9030>, 'SELECT * FROM users WHERE profile_id = ?', ('caccf5d8-2337-4b1e-9216-0fcf666381d3',)) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2cce0>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method fetchone of sqlite3.Cursor object at 0x107b2cce0>) completed
+DEBUG:aiosqlite:executing functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9030>)
+DEBUG:aiosqlite:operation functools.partial(<built-in method close of sqlite3.Connection object at 0x107bd9030>) completed
+emitting event "message_confirmed" to KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:emitting event "message_confirmed" to KS7KuVb39SVrkwFHAAAD [/]
+emitting event "message" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:emitting event "message" to channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+received event "join_channel" from KX8N5KsvWjaixjqAAAAF [/]
+INFO:socketio.server:received event "join_channel" from KX8N5KsvWjaixjqAAAAF [/]
+KX8N5KsvWjaixjqAAAAF is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:socketio.server:KX8N5KsvWjaixjqAAAAF is entering room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742 [/]
+INFO:root:Client KX8N5KsvWjaixjqAAAAF joined room channel_caccf5d8-2337-4b1e-9216-0fcf666381d3_e3f05792-447b-4cde-96ef-4d9a69459742
+received event "stop_typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:socketio.server:received event "stop_typing" from KS7KuVb39SVrkwFHAAAD [/]
+INFO:     connection closed
+INFO:root:Client disconnected: KX8N5KsvWjaixjqAAAAF
+INFO:     connection closed
+INFO:root:Client disconnected: KS7KuVb39SVrkwFHAAAD

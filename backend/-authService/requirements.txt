@@ -1,0 +1,29 @@
+# Core dependencies
+fastapi>=0.110.0
+uvicorn>=0.30.0
+python-socketio>=5.11.1
+python-engineio>=4.8.0
+gevent>=24.11.1
+gevent-websocket>=0.10.1
+urllib3>=2.2.0
+
+# Database
+aiosqlite>=0.20.0
+
+# Authentication and security
+passlib>=1.7.4
+bcrypt==3.2.0
+python-jose[cryptography]>=3.3.0
+PyJWT[crypto]>=2.8.0
+
+# Environment and configuration
+python-dotenv>=1.0.0
+
+# Logging and monitoring
+prometheus-client>=0.19.0
+
+# Utilities
+pydantic>=2.7.0
+email-validator>=2.1.0
+pillow>=10.2.0
+python-multipart>=0.0.6
