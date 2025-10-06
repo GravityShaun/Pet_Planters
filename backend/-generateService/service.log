@@ -1,0 +1,10 @@
+INFO:root:Chat service configuration loaded successfully
+DEBUG:asyncio:Using selector: KqueueSelector
+INFO:     Started server process [43571]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8007 (Press CTRL+C to quit)
+Environment variables loaded:
+CHAT_DATABASE_PATH: chat.db
+JWT_SECRET: Set
+INFO:     127.0.0.1:51216 - "GET /health HTTP/1.1" 200 OK

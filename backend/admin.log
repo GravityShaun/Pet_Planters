@@ -4,16 +4,16 @@ Dashboard URL: http://localhost:5173
 API URL: http://localhost:8005
 INFO:     Will watch for changes in these directories: ['/Users/shauncohen/Documents/BatCave/Pet_Planters/backend/-adminService']
 INFO:     Uvicorn running on http://0.0.0.0:8005 (Press CTRL+C to quit)
-INFO:     Started reloader process [32377] using StatReload
-INFO:     Started server process [32379]
+INFO:     Started reloader process [47305] using StatReload
+INFO:     Started server process [47307]
 INFO:     Waiting for application startup.
-2025-10-05 18:19:52,962 - root - INFO - Admin Service starting up...
-2025-10-05 18:19:52,962 - root - INFO - Chat Service URL: http://localhost:8007/api/chat
-2025-10-05 18:19:52,962 - root - INFO - WebRTC Service URL: http://localhost:8002
-2025-10-05 18:19:52,962 - root - INFO - Admin Service ready to serve requests
+2025-10-05 20:29:19,670 - root - INFO - Admin Service starting up...
+2025-10-05 20:29:19,670 - root - INFO - Chat Service URL: http://localhost:8007/api/chat
+2025-10-05 20:29:19,670 - root - INFO - WebRTC Service URL: http://localhost:8002
+2025-10-05 20:29:19,670 - root - INFO - Admin Service ready to serve requests
 INFO:     Application startup complete.
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [32379]
-INFO:     Stopping reloader process [32377]
+INFO:     Finished server process [47307]
+INFO:     Stopping reloader process [47305]

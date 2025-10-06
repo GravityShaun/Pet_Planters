@@ -1,0 +1,79 @@
+INFO:root:Chat service configuration loaded successfully
+INFO:     Started server process [47313]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8007 (Press CTRL+C to quit)
+DEBUG:python_multipart.multipart:Calling on_part_begin with no data
+DEBUG:python_multipart.multipart:Calling on_header_field with data[57:76]
+DEBUG:python_multipart.multipart:Calling on_header_value with data[78:124]
+DEBUG:python_multipart.multipart:Calling on_header_end with no data
+DEBUG:python_multipart.multipart:Calling on_header_field with data[126:138]
+DEBUG:python_multipart.multipart:Calling on_header_value with data[140:149]
+DEBUG:python_multipart.multipart:Calling on_header_end with no data
+DEBUG:python_multipart.multipart:Calling on_headers_finished with no data
+DEBUG:python_multipart.multipart:Calling on_part_data with data[153:261545]
+DEBUG:python_multipart.multipart:Calling on_part_data with data[0:262144]
+DEBUG:python_multipart.multipart:Calling on_part_data with data[0:262144]
+DEBUG:python_multipart.multipart:Calling on_part_data with data[0:262144]
+DEBUG:python_multipart.multipart:Calling on_part_data with data[0:149607]
+DEBUG:python_multipart.multipart:Calling on_part_end with no data
+DEBUG:python_multipart.multipart:Calling on_part_begin with no data
+DEBUG:python_multipart.multipart:Calling on_header_field with data[149666:149685]
+DEBUG:python_multipart.multipart:Calling on_header_value with data[149687:149713]
+DEBUG:python_multipart.multipart:Calling on_header_end with no data
+DEBUG:python_multipart.multipart:Calling on_headers_finished with no data
+DEBUG:python_multipart.multipart:Calling on_part_data with data[149717:149723]
+DEBUG:python_multipart.multipart:Calling on_part_end with no data
+DEBUG:python_multipart.multipart:Calling on_part_begin with no data
+DEBUG:python_multipart.multipart:Calling on_header_field with data[149782:149801]
+DEBUG:python_multipart.multipart:Calling on_header_value with data[149803:149829]
+DEBUG:python_multipart.multipart:Calling on_header_end with no data
+DEBUG:python_multipart.multipart:Calling on_headers_finished with no data
+DEBUG:python_multipart.multipart:Calling on_part_data with data[149833:149836]
+DEBUG:python_multipart.multipart:Calling on_part_end with no data
+DEBUG:python_multipart.multipart:Calling on_part_begin with no data
+DEBUG:python_multipart.multipart:Calling on_header_field with data[149895:149914]
+DEBUG:python_multipart.multipart:Calling on_header_value with data[149916:149939]
+DEBUG:python_multipart.multipart:Calling on_header_end with no data
+DEBUG:python_multipart.multipart:Calling on_headers_finished with no data
+DEBUG:python_multipart.multipart:Calling on_part_data with data[149943:149967]
+DEBUG:python_multipart.multipart:Calling on_part_end with no data
+DEBUG:python_multipart.multipart:Calling on_end with no data
+INFO:api.image_handler:================================================================================
+INFO:api.image_handler:🆕 NEW IMAGE UPLOAD REQUEST RECEIVED
+INFO:api.image_handler:================================================================================
+INFO:api.image_handler:📊 Number of files received: 1
+INFO:api.image_handler:👤 User: anonymous
+INFO:api.image_handler:📧 Email: anonymous@petplanters.com
+INFO:api.image_handler:🐾 Pet Name: My Pet
+INFO:api.image_handler:🐕 Pet Type: dog
+INFO:api.image_handler:📝 Notes: Custom pet planter order
+INFO:api.image_handler:📁 Created order directory: uploads/pet_images/anonymous/0535ddbb7f734016b331572559a5211b
+INFO:api.image_handler:🆔 Order ID: 0535ddbb7f734016b331572559a5211b
+INFO:api.image_handler:--------------------------------------------------------------------------------
+INFO:api.image_handler:📄 Processing file 1/1: home_2.png
+INFO:api.image_handler:   ✅ File extension valid: .png
+INFO:api.image_handler:   📦 File size: 1,197,431 bytes (1.14 MB)
+INFO:api.image_handler:   ✅ File size within limits
+INFO:api.image_handler:   💾 Saving as: 20251005_202951_844813b516a04dda9c6e912e2ab95979.png
+INFO:api.image_handler:   ✅ File saved successfully to: uploads/pet_images/anonymous/0535ddbb7f734016b331572559a5211b/20251005_202951_844813b516a04dda9c6e912e2ab95979.png
+INFO:api.image_handler:   ✨ File 1 processed successfully
+INFO:api.image_handler:
+INFO:api.image_handler:--------------------------------------------------------------------------------
+INFO:api.image_handler:📋 Creating order metadata...
+INFO:api.image_handler:💾 Metadata saved to: uploads/pet_images/anonymous/0535ddbb7f734016b331572559a5211b/order_metadata.json
+INFO:api.image_handler:--------------------------------------------------------------------------------
+INFO:api.image_handler:🎉 ORDER CREATED SUCCESSFULLY!
+INFO:api.image_handler:🆔 Order ID: 0535ddbb7f734016b331572559a5211b
+INFO:api.image_handler:📁 Total files: 1
+INFO:api.image_handler:💾 Total size: 1,197,431 bytes
+INFO:api.image_handler:📍 Location: uploads/pet_images/anonymous/0535ddbb7f734016b331572559a5211b
+INFO:api.image_handler:================================================================================
+Environment variables loaded:
+CHAT_DATABASE_PATH: chat.db
+JWT_SECRET: Set
+INFO:     127.0.0.1:51553 - "POST /api/images/upload HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47313]
